@@ -1,34 +1,34 @@
 const Stack = require('../../lib/stack.js');
-const DifferenceCommand = require('../../lib/commands/difference.js');
+const DivideCommand = require('../../lib/commands/divide.js');
 const CommandResult = require('../../lib/commands/result.js');
 
 test('does not match random junk', () => {
-    expect(DifferenceCommand.fromLine('foobar')).toEqual([]);
+    expect(DivideCommand.fromLine('foobar')).toEqual([]);
 });
 
-describe('matches "-"', () => {
-    const cmds = DifferenceCommand.fromLine('-');
+describe('matches "/"', () => {
+    const cmds = DivideCommand.fromLine('/');
 
     test('returns one command', () => {
         expect(cmds).toHaveLength(1);
     });
 
-    test('returns difference command', () => {
-        expect(cmds[0]).toBeInstanceOf(DifferenceCommand);
+    test('returns divide command', () => {
+        expect(cmds[0]).toBeInstanceOf(DivideCommand);
     });
 
     test('command initialized with correct token', () => {
-        expect(cmds[0].token).toEqual('-');
+        expect(cmds[0].token).toEqual('/');
     });
 });
 
-describe('execute difference command with enough operands', () => {
+describe('execute divide command with enough operands', () => {
     const stack = new Stack();
     stack.push(3);
     stack.push(4);
     stack.push(5);
 
-    const cmd = new DifferenceCommand('-');
+    const cmd = new DivideCommand('/');
     const result = cmd.execute({ stack });
 
     test('returns command result', () => {
@@ -36,7 +36,7 @@ describe('execute difference command with enough operands', () => {
     });
 
     test('result displays correct value', () => {
-        expect(result.display).toEqual('-1');
+        expect(result.display).toEqual('0.8');
     });
 
     test('does not halt processing', () => {
@@ -48,15 +48,15 @@ describe('execute difference command with enough operands', () => {
     });
 
     test('removes two operands from stack and pushes new operand onto stack', () => {
-        expect(stack.show()).toEqual([3, -1]);
+        expect(stack.show()).toEqual([3, 0.8]);
     });
 });
 
-describe('execute difference command without enough operands', () => {
+describe('execute divide command without enough operands', () => {
     const stack = new Stack();
     stack.push(5);
 
-    const cmd = new DifferenceCommand('-');
+    const cmd = new DivideCommand('/');
     const result = cmd.execute({ stack });
 
     test('returns command result', () => {
@@ -64,7 +64,7 @@ describe('execute difference command without enough operands', () => {
     });
 
     test('result displays error value', () => {
-        expect(result.display).toMatch('Diff requires 2');
+        expect(result.display).toMatch('Divide requires 2');
     });
 
     test('does halt processing', () => {

@@ -10,6 +10,8 @@ const PrintStackCommand = require('./lib/commands/print-stack.js');
 const PushOperandCommand = require('./lib/commands/push-operand.js');
 const SumCommand = require('./lib/commands/sum.js');
 const DifferenceCommand = require('./lib/commands/difference.js');
+const MultiplyCommand = require('./lib/commands/multiply.js');
+const DivideCommand = require('./lib/commands/divide.js');
 
 const rl = readline.createInterface({
     input: stdin,
@@ -33,6 +35,8 @@ const FLOW_COMMANDS = [
     PushOperandCommand,
     SumCommand,
     DifferenceCommand,
+    MultiplyCommand,
+    DivideCommand,
 ];
 
 (async () => {
