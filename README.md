@@ -27,6 +27,39 @@ p = print stack
 ? = print help
 ```
 
+Calculations
+```
+> 5
+5
+> 8
+8
+> +
+13
+```
+
+```
+> 5 5 5 8 + + -
+-13
+> 13 +
+0
+```
+
+Clearing calculator stack between operations
+```
+> 5 5 5 8 + + -
+-13
+> 123
+123
+> p
+[-13,123]
+> c
+Calculator stack cleared. Stack was: [-13,123]
+> 10 20 30 +
+50
+> p
+[10,50]
+```
+
 ## Run Tests
 Install test dependencies:
 ```
@@ -40,7 +73,7 @@ npm run test
 
 Run specific tests:
 ```
-npm run test stack
+npm run test <test name>
 ```
 
 

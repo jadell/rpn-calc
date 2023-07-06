@@ -2,16 +2,11 @@ const readline = require('node:readline/promises');
 const { stdin, stdout } = require('node:process');
 const { toLower, negate, isEmpty, toNumber } = require('lodash');
 const Stack = require('./lib/stack.js');
-const UnknownCommand = require('./lib/commands/unknown.js');
 const HelpCommand = require('./lib/commands/help.js');
 const QuitCommand = require('./lib/commands/quit.js');
 const ClearStackCommand = require('./lib/commands/clear-stack.js');
 const PrintStackCommand = require('./lib/commands/print-stack.js');
-const PushOperandCommand = require('./lib/commands/push-operand.js');
-const SumCommand = require('./lib/commands/sum.js');
-const DifferenceCommand = require('./lib/commands/difference.js');
-const MultiplyCommand = require('./lib/commands/multiply.js');
-const DivideCommand = require('./lib/commands/divide.js');
+const CalcLineCommand = require('./lib/commands/calc-line.js');
 
 const rl = readline.createInterface({
     input: stdin,
@@ -32,11 +27,6 @@ const FLOW_COMMANDS = [
     QuitCommand,
     ClearStackCommand,
     PrintStackCommand,
-    PushOperandCommand,
-    SumCommand,
-    DifferenceCommand,
-    MultiplyCommand,
-    DivideCommand,
 ];
 
 (async () => {
@@ -50,7 +40,7 @@ const FLOW_COMMANDS = [
         }, []);
 
         if (isEmpty(commands)) {
-            commands.push(...[new UnknownCommand(line)]);
+            commands.push(...CalcLineCommand.fromLine(line));
          }
 
         let lastResult = null;
