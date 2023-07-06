@@ -13,7 +13,7 @@ test('matches "c"', () => {
     expect(cmds[0].token).toEqual('c');
 });
 
-test('returns exit message', () => {
+test('returns stack cleared message', () => {
     const stack = new Stack();
     stack.push(123);
     stack.push(456);
