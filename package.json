@@ -1,0 +1,28 @@
+{
+  "name": "rpn-calc",
+  "version": "1.0.0",
+  "description": "Reverse Polish notation calculator",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "npx nodemon index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jadell/rpn-calc.git"
+  },
+  "author": "Josh Adell <josh.adell@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jadell/rpn-calc/issues"
+  },
+  "homepage": "https://github.com/jadell/rpn-calc#readme",
+  "devDependencies": {
+    "jest": "^29.6.0",
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
