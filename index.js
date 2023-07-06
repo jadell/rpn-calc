@@ -5,8 +5,11 @@ const Stack = require('./lib/stack.js');
 const UnknownCommand = require('./lib/commands/unknown.js');
 const HelpCommand = require('./lib/commands/help.js');
 const QuitCommand = require('./lib/commands/quit.js');
-const ClearStackCommand = require('./lib/commands/clear-stack.js');10
-const PrintStackCommand = require('./lib/commands/print-stack.js');10
+const ClearStackCommand = require('./lib/commands/clear-stack.js');
+const PrintStackCommand = require('./lib/commands/print-stack.js');
+const PushOperandCommand = require('./lib/commands/push-operand.js');
+const SumCommand = require('./lib/commands/sum.js');
+const DifferenceCommand = require('./lib/commands/difference.js');
 
 const rl = readline.createInterface({
     input: stdin,
@@ -27,6 +30,9 @@ const FLOW_COMMANDS = [
     QuitCommand,
     ClearStackCommand,
     PrintStackCommand,
+    PushOperandCommand,
+    SumCommand,
+    DifferenceCommand,
 ];
 
 (async () => {
