@@ -5,6 +5,8 @@ const SumCommand = require('../../lib/commands/sum.js');
 const DifferenceCommand = require('../../lib/commands/difference.js');
 const MultiplyCommand = require('../../lib/commands/multiply.js');
 const DivideCommand = require('../../lib/commands/divide.js');
+const SquareRootCommand = require('../../lib/commands/square-root.js');
+const PowerCommand = require('../../lib/commands/power.js');
 const UnknownCommand = require('../../lib/commands/unknown.js');
 
 const matchCases = [
@@ -14,6 +16,8 @@ const matchCases = [
     { line: '-', expectedCommands: [{ type: DifferenceCommand, token: '-' }] },
     { line: '*', expectedCommands: [{ type: MultiplyCommand, token: '*' }] },
     { line: '/', expectedCommands: [{ type: DivideCommand, token: '/' }] },
+    { line: 'sqrt', expectedCommands: [{ type: SquareRootCommand, token: 'sqrt' }] },
+    { line: '^', expectedCommands: [{ type: PowerCommand, token: '^' }] },
     { line: 'foo', expectedCommands: [{ type: UnknownCommand, token: 'foo' }] },
 
     { line: '123 456 + 789 *', expectedCommands: [
