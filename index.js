@@ -7,6 +7,7 @@ const HelpCommand = require('./lib/commands/help.js');
 const QuitCommand = require('./lib/commands/quit.js');
 const ClearStackCommand = require('./lib/commands/clear-stack.js');
 const PrintStackCommand = require('./lib/commands/print-stack.js');
+const StackInPromptCommand = require('./lib/commands/stack-in-prompt.js');
 const CalcLineCommand = require('./lib/commands/calc-line.js');
 
 const rl = readline.createInterface({
@@ -29,13 +30,19 @@ const FLOW_COMMANDS = [
     QuitCommand,
     ClearStackCommand,
     PrintStackCommand,
+    StackInPromptCommand,
 ];
 
 (async () => {
+    const options = {
+        stackInPrompt: false,
+    };
+
     const stack = new Stack();
     let cmdExit = false;
     while (!cmdExit) {
-        const line = toLower(await rl.question('> '));
+        const prompt = (options.stackInPrompt ? JSON.stringify(stack.show()) : '') + '> ';
+        const line = toLower(await rl.question(prompt));
 
         const commands = FLOW_COMMANDS.reduce((agg, curr) => {
             return agg.concat(curr.fromLine(line))
@@ -47,7 +54,7 @@ const FLOW_COMMANDS = [
 
         let lastResult = null;
         for (const command of commands) {
-            lastResult = command.execute({ stack });
+            lastResult = command.execute({ stack, options });
             if (lastResult.haltProcessing) {
                 break;
             }
