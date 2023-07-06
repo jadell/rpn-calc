@@ -2,6 +2,7 @@ const readline = require('node:readline/promises');
 const { stdin, stdout } = require('node:process');
 const { toLower, negate, isEmpty, toNumber } = require('lodash');
 const Stack = require('./lib/stack.js');
+const NoopCommand = require('./lib/commands/noop.js');
 const HelpCommand = require('./lib/commands/help.js');
 const QuitCommand = require('./lib/commands/quit.js');
 const ClearStackCommand = require('./lib/commands/clear-stack.js');
@@ -23,6 +24,7 @@ process.on('SIGINT', () => {
 });
 
 const FLOW_COMMANDS = [
+    NoopCommand,
     HelpCommand,
     QuitCommand,
     ClearStackCommand,
