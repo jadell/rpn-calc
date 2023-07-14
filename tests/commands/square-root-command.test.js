@@ -62,7 +62,7 @@ describe('execute sqaure root command without enough operands', () => {
     });
 
     test('result displays error value', () => {
-        expect(result.display).toMatch('Square root requires 1');
+        expect(result.display).toMatch('sqrt requires 1');
     });
 
     test('does halt processing', () => {

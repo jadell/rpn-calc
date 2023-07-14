@@ -64,7 +64,7 @@ describe('execute power command without enough operands', () => {
     });
 
     test('result displays error value', () => {
-        expect(result.display).toMatch('Power requires 2');
+        expect(result.display).toMatch('^ requires 2');
     });
 
     test('does halt processing', () => {
