@@ -79,3 +79,33 @@ describe('execute divide command without enough operands', () => {
         expect(stack.show()).toEqual([5]);
     });
 });
+
+describe('divideby zero', () => {
+    const stack = new Stack();
+    stack.push(1);
+    stack.push(0);
+
+    const cmd = new DivideCommand('/');
+    const result = cmd.execute({ stack });
+
+    test('returns command result', () => {
+        expect(result).toBeInstanceOf(CommandResult);
+    });
+
+    test('result displays error value', () => {
+        expect(result.display).toMatch('Divide by zero');
+    });
+
+    test('does halt processing', () => {
+        expect(result.haltProcessing).toBeTruthy();
+    });
+
+    test('does not exit app', () => {
+        expect(result.isExit).toBeFalsy();
+    });
+
+    test('stack remains unchanged', () => {
+        expect(stack.show()).toEqual([]);
+    });
+});
+
